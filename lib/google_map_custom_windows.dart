@@ -7,18 +7,18 @@ import 'package:flutter/material.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-/// Controller to add, update and control the custom info window.
-class CustomInfoWindowController {
-  /// Add custom [Widget] and [Marker]'s [LatLng] to [CustomInfoWindow] and make it visible.
+/// Controller to add, update and control the custom info windows.
+class GoogleMapCustomWindowController {
+  /// Add custom [Widget] and [Marker]'s [LatLng] to [CustomMapInfoWindow] and make it visible.
   Function(List<Widget>, List<LatLng>)? addInfoWindow;
 
-  /// Notifies [CustomInfoWindow] to redraw as per change in position.
+  /// Notifies [CustomMapInfoWindow] to redraw as per change in position.
   VoidCallback? onCameraMove;
 
-  /// Hides [CustomInfoWindow].
+  /// Hides [CustomMapInfoWindow].
   VoidCallback? hideInfoWindow;
 
-  /// Holds [GoogleMapController] for calculating [CustomInfoWindow] position.
+  /// Holds [GoogleMapController] for calculating [CustomMapInfoWindow] position.
   GoogleMapController? googleMapController;
 
   void dispose() {
@@ -30,20 +30,20 @@ class CustomInfoWindowController {
 }
 
 /// A stateful widget responsible to create widget based custom info window.
-class CustomInfoWindow extends StatefulWidget {
-  /// A [CustomInfoWindowController] to manipulate [CustomInfoWindow] state.
-  final CustomInfoWindowController controller;
+class CustomMapInfoWindow extends StatefulWidget {
+  /// A [GoogleMapCustomWindowController] to manipulate [CustomMapInfoWindow] state.
+  final GoogleMapCustomWindowController controller;
 
-  /// Offset to maintain space between [Marker] and [CustomInfoWindow].
+  /// Offset to maintain space between [Marker] and [CustomMapInfoWindow].
   final Offset offset;
 
-  /// Height of [CustomInfoWindow].
+  /// Height of [CustomMapInfoWindow].
   final double height;
 
-  /// Width of [CustomInfoWindow].
+  /// Width of [CustomMapInfoWindow].
   final double width;
 
-  const CustomInfoWindow({
+  const CustomMapInfoWindow({
     super.key,
     required this.controller,
     this.offset = const Offset(0, 50),
@@ -57,10 +57,10 @@ class CustomInfoWindow extends StatefulWidget {
   // CustomInfoWindowState createState() => _CustomInfoWindowState();
 
   @override
-  State<CustomInfoWindow> createState() => _CustomInfoWindowState();
+  State<CustomMapInfoWindow> createState() => _CustomMapInfoWindowState();
 }
 
-class _CustomInfoWindowState extends State<CustomInfoWindow> {
+class _CustomMapInfoWindowState extends State<CustomMapInfoWindow> {
   bool _showNow = false;
   List<double> _leftMargin = [0];
   List<double> _topMargin = [0];
@@ -76,7 +76,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
     widget.controller.hideInfoWindow = _hideInfoWindow;
   }
 
-  /// Calculate the position on [CustomInfoWindow] and redraw on screen.
+  /// Calculate the position on [CustomMapInfoWindow] and redraw on screen.
   void _updateInfoWindow() async {
     if (_latLng == null || _childs == null || widget.controller.googleMapController == null) {
       return;
@@ -111,7 +111,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
     _updateInfoWindow();
   }
 
-  /// Disables [CustomInfoWindow] visibility.
+  /// Disables [CustomMapInfoWindow] visibility.
   void _hideInfoWindow() {
     setState(() {
       _showNow = false;
