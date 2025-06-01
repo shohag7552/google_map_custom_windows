@@ -2,7 +2,7 @@ name: google_map_custom_windows
 description: "A customisable google map marker info window. Where you can show multiple info window in your google map view."
 version: 1.0.0
 homepage: https://github.com/shohag7552/google_map_custom_windows
-publish_to: 'none'
+#publish_to: 'none'
 
 environment:
   sdk: ^3.7.2
