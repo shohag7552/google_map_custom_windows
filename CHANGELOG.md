@@ -1,6 +1,6 @@
 ## 1.0.0
 
-# Initial release.
+* Initial release.
 
 - Info Window
     - custom view.
