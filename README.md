@@ -1,6 +1,6 @@
 # google map custom info window
 
-A Flutter package that extends the capabilities of [google_maps_flutter] by allowing developers to display fully customizable info windows for markers, including the ability to show multiple info windows simultaneously on the map.
+A Flutter package that extends the capabilities of `google_maps_flutter` by allowing developers to display fully customizable info windows for markers, including the ability to show multiple info windows simultaneously on the map.
 
 ## ✨Features
 - Customizable Info Windows: Design your info window using any Flutter widget.
@@ -18,11 +18,12 @@ A Flutter package that extends the capabilities of [google_maps_flutter] by allo
 [//]: # (   Add `water_drop_nav_bar:` to your `pubspec.yaml` dependencies then run `flutter pub get`)
    First, ensure you have `google_maps_flutter` integrated into your project. Then, add `google_map_custom_windows` to your `pubspec.yaml`:
 
-```yaml
- dependencies:
-    google_map_custom_windows:
-```
-Run `flutter pub get` to fetch the new dependencies.
+   ```yaml
+      dependencies:
+        google_map_custom_windows:
+   ```
+
+   Run `flutter pub get` to fetch the new dependencies.
 
 2. Import
    ```dart 
