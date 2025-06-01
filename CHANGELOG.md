@@ -1,3 +1,9 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* Initial release.
+
+- Info Window
+    - custom view.
+    - custom position.
+    - show and hide multiple window at a time.
+    - on action single info window show.

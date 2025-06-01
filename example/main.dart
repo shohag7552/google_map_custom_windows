@@ -31,11 +31,17 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   LatLng toLocation = const LatLng(23.789451, 90.419584);
   
   Set<Marker> markers = {};
-  final GoogleMapCustomWindowController _googleMapCustomWindowController = GoogleMapCustomWindowController();
+  late GoogleMapCustomWindowController _googleMapCustomWindowController;
+
+  @override
+  void initState() {
+    super.initState();
+    _googleMapCustomWindowController = GoogleMapCustomWindowController();
+  }
 
   List<Widget> infoWidgets = [
-    MyInfoWidget(title: 'From Marker'),
-    MyInfoWidget(title: 'To Marker'),
+    MyCustomInfoWidget(title: 'From Marker'),
+    MyCustomInfoWidget(title: 'To Marker'),
   ];
 
   List<LatLng> infoPositions = [
@@ -49,7 +55,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       markerId: const MarkerId('from_marker'), 
       position: fromLocation,
       onTap: () {
-        _googleMapCustomWindowController.addInfoWindow!([MyInfoWidget(title: 'From Marker')], [fromLocation]);
+        _googleMapCustomWindowController.addInfoWindow!([MyCustomInfoWidget(title: 'From Marker')], [fromLocation]);
       },
     );
     markers.add(fromMarker);
@@ -57,7 +63,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
     Marker toMarker = Marker(
       markerId: const MarkerId('to_marker'), position: toLocation,
       onTap: (){
-        _googleMapCustomWindowController.addInfoWindow!([MyInfoWidget(title: 'To Marker')], [toLocation]);
+        _googleMapCustomWindowController.addInfoWindow!([MyCustomInfoWidget(title: 'To Marker')], [toLocation]);
       },
     );
     markers.add(toMarker);
@@ -108,9 +114,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   }
 }
 
-class MyInfoWidget extends StatelessWidget {
+class MyCustomInfoWidget extends StatelessWidget {
   final String title;
-  const MyInfoWidget({super.key, required this.title});
+  const MyCustomInfoWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

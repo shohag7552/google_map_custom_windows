@@ -1,39 +1,128 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# google map custom info window
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A Flutter package that extends the capabilities of [google_maps_flutter] by allowing developers to display fully customizable info windows for markers, including the ability to show multiple info windows simultaneously on the map.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+## ✨Features
+- Customizable Info Windows: Design your info window using any Flutter widget.
+- Multiple Info Windows: Display several info windows at once, ideal for showing details of nearby locations or clustered markers.
+- Highly Flexible: Control the content, styling, and behavior of each info window independently.
+- Easy Integration: Seamlessly integrates with your existing Maps_flutter implementation.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+📸 Screenshots
+(Replace with actual screenshots of your package in action. Aim for 2-3 clear images showing different info window styles and multiple info windows.)
 
-## Features
+Single Custom Info Window	Multiple Custom Info Windows	Interactive Elements
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Export to Sheets
+Example: A basic info window with text.
+Example: Showing two info windows at once.
+Example: An info window with a button.
 
-## Getting started
+## 🚀 Getting Started
+1. Add Dependencies
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+[//]: # (   Add `water_drop_nav_bar:` to your `pubspec.yaml` dependencies then run `flutter pub get`)
+   First, ensure you have `google_maps_flutter` integrated into your project. Then, add `google_map_custom_windows` to your `pubspec.yaml`:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+ dependencies:
+    google_map_custom_windows:
 ```
+Run `flutter pub get` to fetch the new dependencies.
 
-## Additional information
+2. Import
+   ```dart 
+    import 'package:google_map_custom_windows/google_map_custom_windows.dart';
+   ```
+3. Usage
+   To use the custom info windows, you'll primarily interact with the `GoogleMapCustomWindowController` and the `CustomMapInfoWindow` widget.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+* Initialize `GoogleMapCustomWindowController`, Create an instance of `GoogleMapCustomWindowController` in your StatefulWidget's initState.
+   ```dart
+  late GoogleMapCustomWindowController _googleMapCustomWindowController;
+
+  @override
+  void initState() {
+    super.initState();
+    _googleMapCustomWindowController = GoogleMapCustomWindowController();
+  }
+   ```
+* Need to create your custom `info window` widget for view. You can create multiple window as your requirement.
+   ```dart
+  class MyCustomInfoWidget extends StatelessWidget {
+  final String title;
+  const MyCustomInfoWidget({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.black,
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        title,
+        style: TextStyle(color: Colors.white, fontSize: 14),
+      ),
+    );
+  }
+  }
+  ```
+* Declare list of info window and same size of list LatLng.
+    ```dart
+    List<Widget> infoWidgets = [
+    MyCustomInfoWidget(title: 'From Marker'),
+    MyCustomInfoWidget(title: 'To Marker'),
+  ];
+
+  List<LatLng> infoPositions = [
+    LatLng(23.798054, 90.413459),
+    LatLng(23.789451, 90.419584),
+  ];
+    ```
+* Use Stack widget for using custom info window.
+   ```dart
+  @Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            markers: markers,
+            initialCameraPosition: CameraPosition(target: initPosition, zoom: 15),
+            onMapCreated: (GoogleMapController controller) {
+              _setFromToMarker();
+              _googleMapCustomWindowController.googleMapController = controller;
+              _googleMapCustomWindowController.addInfoWindow!(infoWidgets, infoPositions);
+            },
+            onTap: (position) {
+              _googleMapCustomWindowController.hideInfoWindow!();
+            },
+            onCameraMove: (CameraPosition cameraPosition) {
+              _googleMapCustomWindowController.onCameraMove!();
+            },
+          ),
+
+          CustomMapInfoWindow(
+            controller: _googleMapCustomWindowController,
+            offset: const Offset(0, 50),
+            height: 40,
+            width: 100,
+          ),
+        ],
+      )
+  ```
+4. Don't forget to dispose _`googleMapCustomWindowController`
+    ```dart
+    @override
+      void dispose() {
+        _googleMapCustomWindowController.dispose();
+        super.dispose();
+      }
+    ```
+
+## 🤝 Contributing
+Contributions are welcome! If you find a bug or have a feature request, please open an issue on GitHub. If you'd like to contribute code, please fork the repository and submit a pull request.
+
+[//]: # (📄 License)
+
+[//]: # (This package is released under the MIT License.)
