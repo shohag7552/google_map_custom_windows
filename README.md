@@ -8,15 +8,9 @@ A Flutter package that extends the capabilities of [google_maps_flutter] by allo
 - Highly Flexible: Control the content, styling, and behavior of each info window independently.
 - Easy Integration: Seamlessly integrates with your existing Maps_flutter implementation.
 
-📸 Screenshots
-(Replace with actual screenshots of your package in action. Aim for 2-3 clear images showing different info window styles and multiple info windows.)
+## 📸 Demo screen recording
 
-Single Custom Info Window	Multiple Custom Info Windows	Interactive Elements
-
-Export to Sheets
-Example: A basic info window with text.
-Example: Showing two info windows at once.
-Example: An info window with a button.
+<img src="https://github.com/shohag7552/google_map_custom_windows/blob/main/example/google_map_custom_windows.gif"  width="300"/>
 
 ## 🚀 Getting Started
 1. Add Dependencies
