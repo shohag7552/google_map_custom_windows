@@ -93,8 +93,8 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
           CustomMapInfoWindow(
             controller: _googleMapCustomWindowController,
             offset: const Offset(0, 50),
-            height: 100,
-            width: 200,
+            height: 40,
+            width: 100,
           ),
         ],
       ),
