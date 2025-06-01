@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CustomInfoWindow(),
-    );
+    return MaterialApp(home: CustomInfoWindow());
   }
 }
 
@@ -25,11 +23,10 @@ class CustomInfoWindow extends StatefulWidget {
 }
 
 class _CustomInfoWindowState extends State<CustomInfoWindow> {
-
   LatLng initPosition = const LatLng(23.794818, 90.416216);
   LatLng fromLocation = const LatLng(23.798054, 90.413459);
   LatLng toLocation = const LatLng(23.789451, 90.419584);
-  
+
   Set<Marker> markers = {};
   late GoogleMapCustomWindowController _googleMapCustomWindowController;
 
@@ -52,18 +49,25 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   Future<void> _setFromToMarker() async {
     markers = {};
     Marker fromMarker = Marker(
-      markerId: const MarkerId('from_marker'), 
+      markerId: const MarkerId('from_marker'),
       position: fromLocation,
       onTap: () {
-        _googleMapCustomWindowController.addInfoWindow!([MyCustomInfoWidget(title: 'From Marker')], [fromLocation]);
+        _googleMapCustomWindowController.addInfoWindow!(
+          [MyCustomInfoWidget(title: 'From Marker')],
+          [fromLocation],
+        );
       },
     );
     markers.add(fromMarker);
-    
+
     Marker toMarker = Marker(
-      markerId: const MarkerId('to_marker'), position: toLocation,
-      onTap: (){
-        _googleMapCustomWindowController.addInfoWindow!([MyCustomInfoWidget(title: 'To Marker')], [toLocation]);
+      markerId: const MarkerId('to_marker'),
+      position: toLocation,
+      onTap: () {
+        _googleMapCustomWindowController.addInfoWindow!(
+          [MyCustomInfoWidget(title: 'To Marker')],
+          [toLocation],
+        );
       },
     );
     markers.add(toMarker);
@@ -74,19 +78,23 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Custom Info Window Example'),
-      ),
+      appBar: AppBar(title: Text('Custom Info Window Example')),
       body: Stack(
         children: [
           GoogleMap(
             mapType: MapType.normal,
             markers: markers,
-            initialCameraPosition: CameraPosition(target: initPosition, zoom: 15),
+            initialCameraPosition: CameraPosition(
+              target: initPosition,
+              zoom: 15,
+            ),
             onMapCreated: (GoogleMapController controller) {
               _setFromToMarker();
               _googleMapCustomWindowController.googleMapController = controller;
-              _googleMapCustomWindowController.addInfoWindow!(infoWidgets, infoPositions);
+              _googleMapCustomWindowController.addInfoWindow!(
+                infoWidgets,
+                infoPositions,
+              );
             },
             onTap: (position) {
               _googleMapCustomWindowController.hideInfoWindow!();
@@ -126,12 +134,7 @@ class MyCustomInfoWidget extends StatelessWidget {
         color: Colors.black,
       ),
       alignment: Alignment.center,
-      child: Text(
-        title,
-        style: TextStyle(color: Colors.white, fontSize: 14),
-      ),
+      child: Text(title, style: TextStyle(color: Colors.white, fontSize: 14)),
     );
   }
 }
-
-
