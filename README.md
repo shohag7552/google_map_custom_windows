@@ -10,15 +10,15 @@ A Flutter package that extends the capabilities of `google_maps_flutter` by allo
 
 ## 📸 Demo screen recording
 
-<img src="https://github.com/shohag7552/google_map_custom_windows/blob/main/example/google_map_custom_windows.gif"  width="300"/>
+ <img src="https://raw.githubusercontent.com/shohag7552/google_map_custom_windows/main/example/google_map_custom_windows.gif"  width="300"/>
 
 ## 🚀 Getting Started
 1. Add Dependencies
     First, ensure you have `google_maps_flutter` integrated into your project. Then, add `google_map_custom_windows` to your `pubspec.yaml`:
 
    ```yaml
-      dependencies:
-        google_map_custom_windows:
+    dependencies:
+      google_map_custom_windows: ^1.0.0
    ```
 
    Run `flutter pub get` to fetch the new dependencies.
