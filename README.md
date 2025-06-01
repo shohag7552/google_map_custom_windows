@@ -18,7 +18,7 @@ A Flutter package that extends the capabilities of `google_maps_flutter` by allo
 
    ```yaml
     dependencies:
-      google_map_custom_windows: ^1.0.0
+      google_map_custom_windows: ^1.0.1
    ```
 
    Run `flutter pub get` to fetch the new dependencies.
