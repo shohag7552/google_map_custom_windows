@@ -1,4 +1,4 @@
-library google_map_custom_windows;
+library;
 
 
 
@@ -70,7 +70,6 @@ class _CustomMapInfoWindowState extends State<CustomMapInfoWindow> {
   @override
   void initState() {
     super.initState();
-    print('=====move google map : ${widget.controller.googleMapController}');
     widget.controller.addInfoWindow = _addInfoWindow;
     widget.controller.onCameraMove = _onCameraMove;
     widget.controller.hideInfoWindow = _hideInfoWindow;

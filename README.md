@@ -14,9 +14,7 @@ A Flutter package that extends the capabilities of `google_maps_flutter` by allo
 
 ## 🚀 Getting Started
 1. Add Dependencies
-
-[//]: # (   Add `water_drop_nav_bar:` to your `pubspec.yaml` dependencies then run `flutter pub get`)
-   First, ensure you have `google_maps_flutter` integrated into your project. Then, add `google_map_custom_windows` to your `pubspec.yaml`:
+    First, ensure you have `google_maps_flutter` integrated into your project. Then, add `google_map_custom_windows` to your `pubspec.yaml`:
 
    ```yaml
       dependencies:
