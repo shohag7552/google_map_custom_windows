@@ -128,7 +128,7 @@ class _CustomMapInfoWindowState extends State<CustomMapInfoWindow> {
     if (_latLng == null ||
         _latLng!.isEmpty ||
         _childs == null ||
-        _childs!.isEmpty) {
+        _childs!.isEmpty || _leftMargin.isEmpty || _leftMargin.length == 1) {
       return const SizedBox.shrink();
     }
     return Stack(
